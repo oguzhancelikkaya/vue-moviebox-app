@@ -10,11 +10,10 @@
 </template>
 
 <script>
-    import { eventBus } from '../../main';
     export default{
         computed:{
             movies(){
-                return this.$store.state.movies;
+                return this.$store.getters.getMovies;
             }
         }
     }

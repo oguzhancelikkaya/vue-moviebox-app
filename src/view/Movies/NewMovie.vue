@@ -55,8 +55,6 @@
 </template>
 
 <script>
-    import { eventBus } from '../../main';
-
     export default{
         data(){
             return{
@@ -65,7 +63,7 @@
         },
         methods: {
             addNewMovie(){
-                eventBus.$emit('movieAdded', this.movie);
+                this.$store.dispatch('addMovie', this.movie);
                 this.movie = this.getMovieObject();
             },
             getMovieObject(){

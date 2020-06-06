@@ -1,7 +1,7 @@
 <template>
     <div>
         <br/>
-        <div class="card" style="width: 30rem;">
+        <div class="card" style="width: 30rem;" v-if="movie">
         <iframe class="card-img-top"  width="560" height="315" :src="movie.trailer" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <div class="card-body">
             <h5 class="card-title">{{movie.name}}</h5>
@@ -15,7 +15,7 @@
                 <label class="control-label"><b>Creator:</b></label> <span class="card-text">{{movie.creator}}</span>
             </div>
             <div class="form-group">
-                <label class="control-label"><b>Creator:</b></label> <span class="card-text">{{movie.stars}}</span>
+                <label class="control-label"><b>Stars:</b></label> <span class="card-text">{{movie.stars}}</span>
             </div>
             <div class="form-group">
                 <label class="control-label"><b>Duration:</b></label> <span class="card-text">{{movie.duration}}</span>
@@ -31,7 +31,12 @@
     export default{
         computed:{
            movie(){
-               return this.$store.state.movies.filter(movie => movie.id === this.$route.params.id)[0];
+               if(this.$store.getters.getMovies.length != 0){
+                return this.$store.getters.getMovie(this.$route.params.id);
+               }
+               else{
+                   this.$store.dispatch("fetchMovies");
+               }
            }
         }
 
