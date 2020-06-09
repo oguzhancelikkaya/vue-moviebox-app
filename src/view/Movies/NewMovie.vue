@@ -55,6 +55,7 @@
 </template>
 
 <script>
+    import {mapActions} from 'vuex';
     export default{
         data(){
             return{
@@ -62,8 +63,11 @@
             }
         },
         methods: {
+            ...mapActions([
+                'addMovie'
+            ]),
             addNewMovie(){
-                this.$store.dispatch('addMovie', this.movie);
+                this.addMovie(this.movie);
                 this.movie = this.getMovieObject();
             },
             getMovieObject(){

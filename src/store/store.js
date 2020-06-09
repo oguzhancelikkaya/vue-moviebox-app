@@ -35,7 +35,7 @@ export const store = new Vuex.Store({
     },
     actions:{
         addMovie: ({commit}, payload) => {
-            this.resource.saveAlt(payload).then(response => {
+            Vue.resource.saveAlt(payload).then(response => {
                 return response.json();
             })
             .then(data => {
@@ -44,8 +44,8 @@ export const store = new Vuex.Store({
             });
         },
         fetchMovies: ({commit}) => {
-            this.resource = Vue.resource('movies.json', {}, customActions);
-            this.resource.getData()
+            Vue.resource = Vue.resource('movies.json', {}, customActions);
+            Vue.resource.getData()
             .then(response => {
                 return response.json();
             })

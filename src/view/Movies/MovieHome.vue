@@ -9,15 +9,22 @@
 <script>
     import NewMovie from './NewMovie.vue';
     import MovieList from './MovieList.vue';
-    import { eventBus } from '../../main';
+    import {mapActions} from 'vuex';
 
     export default{
         components:{
             newMovie: NewMovie,
             movieList: MovieList
         },
+        methods:{
+            ...mapActions([
+                'fetchMovies'
+            ])
+        },
         created() {
-            this.$store.dispatch("fetchMovies");
+            if(this.$store.getters.getMovies.length == 0){
+                this.fetchMovies();
+            }   
         }
     }
 </script>

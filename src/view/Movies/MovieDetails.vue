@@ -28,17 +28,24 @@
 </template>
 
 <script>
+    import {mapActions} from 'vuex';
     export default{
         computed:{
            movie(){
                if(this.$store.getters.getMovies.length != 0){
-                return this.$store.getters.getMovie(this.$route.params.id);
+                   return this.$store.getters.getMovie(this.$route.params.id);
                }
                else{
-                   this.$store.dispatch("fetchMovies");
+                   this.fetchMovies();
                }
            }
+        },
+        methods:{
+            ...mapActions([
+                "fetchMovies"
+            ])
         }
+        
 
     }
 </script>

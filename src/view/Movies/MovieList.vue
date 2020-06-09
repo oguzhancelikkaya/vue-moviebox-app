@@ -10,11 +10,12 @@
 </template>
 
 <script>
+    import {mapGetters} from 'vuex';
     export default{
         computed:{
-            movies(){
-                return this.$store.getters.getMovies;
-            }
+            ...mapGetters({
+                movies:'getMovies'
+            })
         }
     }
 </script>
